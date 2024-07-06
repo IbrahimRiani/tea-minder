@@ -1,1 +1,15 @@
-<p>register works!</p>
+<p>Register</p>
+
+<form [formGroup]="registerForm" (ngSubmit)="sendForm()">
+    <div>
+        <input type="text" name="text" placeholder="name" formControlName="name">
+    </div>
+    <div>
+        <input type="email" name="email" placeholder="email" formControlName="email">
+    </div>
+    
+    <div>
+        <input type="password" name="password" placeholder="password" formControlName="password">
+    </div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Registro</button>
+</form>
