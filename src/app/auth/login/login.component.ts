@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 
 export class LoginComponent {
-  
+  private authService: AuthService = inject(AuthService);
+
   loginForm: FormGroup;
 
   constructor(){
@@ -22,7 +24,10 @@ export class LoginComponent {
 
   sendForm(): void{
     if(!this.loginForm.invalid){
-      console.log('FORM LOGIN =>', this.loginForm.value);
+      //console.log('FORM LOGIN =>', this.loginForm.value);
+      this.authService.login(
+        this.loginForm.value.email, 
+        this.loginForm.value.password)
     }else{
       console.log('INVALID');
     }
